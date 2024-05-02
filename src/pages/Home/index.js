@@ -12,8 +12,16 @@ import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
+
+
 const Page = () => {
-  const {last} = useData()
+
+  const { data } = useData();
+  const last =
+    data && data.events && data.events.length > 0
+      ? data.events[data.events.length - 1]
+      : null;
+
   return <>
     <header>
       <Menu />
@@ -96,7 +104,7 @@ const Page = () => {
         <Modal
           Content={
             <div className="ModalMessage--success">
-              <div className="ModalMessage__title">Message envoyé !</div>
+              <div>Message envoyé !</div>
               <p>
                 Merci pour votre message nous tâcherons de vous répondre dans
                 les plus brefs délais
@@ -116,14 +124,18 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
-        />
+        {last && (
+          <EventCard
+            imageSrc={last?.cover}
+            title={last?.title}
+            date={new Date(last?.date)}
+            small
+            label={last?.type}
+          />
+        )}
+
       </div>
+
       <div className="col contact">
         <h3>Contactez-nous</h3>
         <address>45 avenue de la République, 75000 Paris</address>

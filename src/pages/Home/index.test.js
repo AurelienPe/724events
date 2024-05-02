@@ -21,19 +21,7 @@ describe("When Form is created", () => {
         })
       );
       await screen.findByText("En cours");
-
-      //?code modifié
-      const MessageSend = (text) => screen.findByText(text).catch((error) => {
-        // Implement custom text matcher here
-        // Return the found element or handle the error as needed
-      });
-      
-      // Usage
-      MessageSend("Message envoyé !").then((element) => {
-        // Handle the found element
-      }).catch((error) => {
-        // Handle the error
-      });
+      await screen.findByText("Message envoyé !");
     });
   });
 
