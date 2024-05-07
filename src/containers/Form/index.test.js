@@ -22,20 +22,7 @@ describe("When Events is created", () => {
         })
       );
       await screen.findByText("En cours");
-
-      //?code modifié
-      const Send = (text) => screen.findByText(text).catch((error) => {
-        // Implement custom text matcher here
-        // Return the found element or handle the error as needed
-      });
-
-      // Usage
-      Send("Envoyer").then((element) => {
-        // Handle the found element
-      }).catch((error) => {
-        // Handle the error
-      });
-
+      await screen.findByText("Envoyer");
       expect(onSuccess).toHaveBeenCalled();
     });
   });
